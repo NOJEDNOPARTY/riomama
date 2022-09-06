@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Polylines</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- jsFiddle will insert css and js -->
+    <style>
+      #map {
+        height: 100%;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRSru9nlYSIKx5d3CwzW_DM23WKACQ1es&callback=initMap&v=weekly&libraries=geometry&libraries=places" defer></script>
+
+    <script>
+      function initMap() {
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 8,
+          center: { lat: 51.66107513125421, lng: 32.38670904387571 },
+          mapTypeId: google.maps.MapTypeId.HYBRID,
+        });
+
+        const flightPlanCoordinates = [
+          { lat: 51.620166970293205, lng: 29.497304747000708 },
+          { lat: 51.66107513125421, lng: 32.38670904387571 },
+          { lat: 50.939844252372566, lng: 31.595693418875708 },
+          { lat: 51.626987560039716, lng: 29.497304747000708 },
+        ];
+
+        const flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          strokeColor: "#6EB44A",
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+
+      }
+
+      window.initMap = initMap;
+    </script>
+  </body>
+</html>
